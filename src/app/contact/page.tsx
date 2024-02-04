@@ -4,9 +4,8 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import GitHubIcon from "../../assets/GitHub.svg";
 import LinkedInIcon from "../../assets/Linkedin.svg";
 import TwitterIcon from "../../assets/Twitter.svg";
-import CodeChefIcon from "../../assets/CodeChef.svg";
-import LeetCodeIcon from "../../assets/LeetCode.svg";
-
+import "./page.css";
+import toast from 'react-hot-toast';
 export default function page() {
 
     function sendEmail(e: React.FormEvent<HTMLFormElement>) {
@@ -16,6 +15,11 @@ export default function page() {
         const email = formData.get("email")
         const message = formData.get("message")
 
+        console.log("enter here")
+        const loader = document.getElementById("contact_page_loader") as HTMLElement
+        if (loader) {
+            loader.style.display = "block";
+        }
 
         emailjs
             .send(
@@ -25,23 +29,27 @@ export default function page() {
                 "oVSdYighcxjoNKRy1"
             )
             .then((res: EmailJSResponseStatus) => {
-                alert('Your message has been sent successfully...!');
+                toast.success('Your message has been sent successfully...!');
                 e.currentTarget?.reset();
             })
             .catch((err: Error) => {
-                alert("An error occured!\nPlease try again after sometime!");
+                toast.error("An error occured!\nPlease try again after sometime!");
                 console.error(err);
                 e.currentTarget?.reset();
+            }).finally(() => {
+                loader.style.display = "none";
             });
     }
 
     return (
         <>
-            <div className="container">
-                <center>
+            <div className="container flex flex-col gap-5">
+
+
+                <center >
                     <h1 className="text-[#00FFFF] p-2 font-bold underline text-4xl">Contact Me!</h1>
                 </center>
-                <center className="">
+                <center className="mt-5">
                     <div className="img-container"></div>
                     <div className="form-container mt-4">
                         <form className="w-1/2 " onSubmit={sendEmail}>
@@ -74,6 +82,11 @@ export default function page() {
                         {/* <a className="m-2 p-2 my-auto" target="_blank" href="https://leetcode.com/TechyGeek1707"><Image src={LeetCodeIcon} alt="LeetCode" className='m-0 p-0 my-0' height={35} width={35} /></a> */}
                     </div>
                 </center >
+
+                <div className="loader" id='contact_page_loader'>
+                    <div className="loading">
+                    </div>
+                </div>
             </div >
         </>
     )

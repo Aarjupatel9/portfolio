@@ -6,6 +6,7 @@ import { HomeIcon, BriefcaseIcon, UserCircleIcon, PhoneIcon } from '@heroicons/r
 import { Tooltip } from 'react-tooltip';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { Toaster } from 'react-hot-toast';
 
 
 export default function RootLayout({
@@ -50,6 +51,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="bg-black text-white m-0 p-0 flex h-screen md:flex-row flex-col">
+                <Toaster/>
                 <nav className="md:border-r border-white md:h-full md:w-40 p-0 ">
                     <ul className="list-none m-0 p-0 flex h-full w-full justify-around align-center flex-row md:flex-col">
                         <colorContext.Provider value={{ color, setColor }}>

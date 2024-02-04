@@ -77,7 +77,7 @@ export default function Page() {
                                 {project.tags.map((tag, index) => (
                                     <span
                                         key={index}
-                                        className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-xs mr-1 mt-2 inline-block"
+                                        className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-sm mr-1 mt-2 inline-block"
                                     >
                                         {tag}
                                     </span>
