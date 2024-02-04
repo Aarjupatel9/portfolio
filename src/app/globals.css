@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+/* Define the neon button style */
+body {
+    font-family: 'Special Elite', cursive;
+}
+
+.neon-button {
+    box-shadow: 0 0 8px #FF0066;
+}
+
+.Typewriter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glassmorphism {
+    /* background: rgba(255, 255, 255, 0.15); */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.glassmorphism:hover {
+    background: rgba(255, 255, 255, 0.10);
+    opacity: 0.95;
+}
