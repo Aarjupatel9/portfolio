@@ -1,109 +1,162 @@
 "use client"
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import type { Container, Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 import Typewriter from 'typewriter-effect';
 import Link from 'next/link';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function Page() {
     const particlesInit = useCallback(async (engine: Engine) => {
-        console.log(engine);
         await loadFull(engine);
     }, []);
 
     const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        await console.log(container);
+        // Particles loaded
     }, []);
+    
     return (
-        <>
-            <section className="container h-screen w-full flex items-center flex-col justify-center" >
-                <Particles
-                    id="tsparticles"
-                    className="absolute top-0 left-0 inset-0 -z-50"
-                    init={particlesInit}
-                    loaded={particlesLoaded}
-                    options={{
-                        fullScreen: {
-                            enable: false,
+        <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+            <Particles
+                id="tsparticles"
+                className="absolute top-0 left-0 inset-0 -z-10"
+                init={particlesInit}
+                loaded={particlesLoaded}
+                options={{
+                    fullScreen: {
+                        enable: false,
+                    },
+                    background: {
+                        color: {
+                            value: "transparent",
                         },
-                        background: {
-                            color: {
-                                value: "#000000",
-                            },
-                        },
-                        fpsLimit: 120,
-                        interactivity: {
-                            events: {
-                                onClick: {
-                                    enable: true,
-                                    mode: "push",
-                                },
-                                onHover: {
-                                    enable: false,
-                                },
-                                resize: true,
-                            },
-                            modes: {
-                                push: {
-                                    quantity: 4,
-                                },
-                                repulse: {
-                                    distance: 200,
-                                    duration: 0.4,
-                                },
-                            },
-                        },
-                        particles: {
-                            color: {
-                                value: "#FF0066",
-                            },
-                            move: {
-                                direction: "none",
+                    },
+                    fpsLimit: 120,
+                    interactivity: {
+                        events: {
+                            onClick: {
                                 enable: true,
-                                outModes: {
-                                    default: "bounce",
-                                },
-                                random: false,
-                                speed: 2,
-                                straight: false,
+                                mode: "push",
                             },
-                            number: {
-                                density: {
-                                    enable: true,
-                                    area: 800,
-                                },
-                                value: 40,
+                            onHover: {
+                                enable: true,
+                                mode: "repulse",
                             },
-                            opacity: {
-                                value: 0.5,
+                            resize: true,
+                        },
+                        modes: {
+                            push: {
+                                quantity: 3,
                             },
-                            shape: {
-                                type: "circle",
-                            },
-                            size: {
-                                value: { min: 1, max: 5 },
+                            repulse: {
+                                distance: 150,
+                                duration: 0.4,
                             },
                         },
-                        detectRetina: true,
-                    }}
-                />
-                <div className="text-4xl mb-2">Hey, I am <span className="text-[#FF0066] font-bold">Aarju</span></div>
-                <div className="flex justify-center items-center">
-                    {/* <span className="m-0 p-0 inline text-3xl font-bold text-center">I am&nbsp;</span> */}
+                    },
+                    particles: {
+                        color: {
+                            value: "#6366f1",
+                        },
+                        links: {
+                            color: "#6366f1",
+                            distance: 150,
+                            enable: true,
+                            opacity: 0.3,
+                            width: 1,
+                        },
+                        move: {
+                            direction: "none",
+                            enable: true,
+                            outModes: {
+                                default: "bounce",
+                            },
+                            random: false,
+                            speed: 1,
+                            straight: false,
+                        },
+                        number: {
+                            density: {
+                                enable: true,
+                                area: 800,
+                            },
+                            value: 50,
+                        },
+                        opacity: {
+                            value: { min: 0.3, max: 0.7 },
+                            animation: {
+                                enable: true,
+                                speed: 0.5,
+                                minimumValue: 0.3,
+                            },
+                        },
+                        shape: {
+                            type: "circle",
+                        },
+                        size: {
+                            value: { min: 1, max: 4 },
+                            animation: {
+                                enable: true,
+                                speed: 2,
+                                minimumValue: 0.5,
+                            },
+                        },
+                    },
+                    detectRetina: true,
+                }}
+            />
+            
+            <div className="container mx-auto px-6 text-center animate-fade-in">
+                <div className="mb-6">
+                    <h1 className="text-5xl md:text-7xl font-bold mb-4 leading-tight">
+                        Hey, I am{' '}
+                        <span className="gradient-text">Aarju</span>
+                    </h1>
+                </div>
+                
+                <div className="flex justify-center items-center mb-8 min-h-[60px]">
                     <Typewriter
                         options={{
-                            strings: ['I am  Software Developer', 'Experience In Nodejs Android Socket.IO'],
+                            strings: [
+                                'I am a Software Developer',
+                                'I build Full-Stack Applications',
+                                'Experience in Node.js & Android',
+                                'Expert in Socket.IO & Real-time Systems'
+                            ],
                             autoStart: true,
                             loop: true,
-                            delay: 50,
-                            deleteSpeed: 10,
-                            wrapperClassName: 'm-0 p-0 inline text-3xl font-bold text-center text-[#FF0066]'
+                            delay: 75,
+                            deleteSpeed: 30,
+                            wrapperClassName: 'text-2xl md:text-4xl font-semibold gradient-text'
                         }}
                     />
                 </div>
-                <Link href="/about" className={`mt-4 text-2xl border-[#FF0066] transition-all duration-300 hover:bg-[#FF0066] p-3 neon-button transform -skew-x-12 text-white`}>Let&apos;s get started 🚀</Link>
-            </section >
-        </>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+                    <Link 
+                        href="/about" 
+                        className="group relative inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-indigo-500 to-pink-500 rounded-xl shadow-lg shadow-indigo-500/50 hover:shadow-indigo-500/70 transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                    >
+                        Let&apos;s get started
+                        <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                    <Link 
+                        href="/projects" 
+                        className="group inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold text-white border-2 border-white/20 rounded-xl hover:border-white/40 hover:bg-white/5 transition-all duration-300"
+                    >
+                        View Projects
+                        <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                </div>
+            </div>
+            
+            {/* Scroll indicator */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+                    <div className="w-1 h-3 bg-white/50 rounded-full mt-2"></div>
+                </div>
+            </div>
+        </section>
     )
 }
